@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/style_login.css"/>
+    <title><%= title%></title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="login-container">
+            <div class="login">
+                <img class="img" src="/images/box.png" width="200px"/>
+                <h2>Iniciar Sesión</h2>
+                <form action="/login" method="POST">
+                    <input type="text" placeholder="Correo" class="correo" name="correo">
+                    <input type="password" placeholder="Contraseña" class="pass" name="password">
+                    <input type="submit" class="submit" value="Ingresar">
+                </form>
+                <div class="registro">
+                    <a href="/register">Registro</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

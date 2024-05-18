@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title%></title>
+    <link rel="shortcut icon" href="./Images/" type="Images/x-icon"> <!-- falta colocar el icono -->
+    <link rel="stylesheet" href="./css/normalize.css">
+    <link rel="stylesheet" href="./stylesheets/index/style_index.css"> 
+    <link rel="stylesheet" href="./stylesheets/index/normalize.css"> 
+</head>
+<body>
+    <header class="hero">
+        <nav class="nav container">
+            <div class="nav__logo">
+                <h2 class="nav__tittle">SCIR</h2>
+            </div>
+            <ul class="nav__link nav__link--menu">
+                <li class="nav__items">
+                    <a href="#" class="nav__links"> Inicio</a>
+                </li>
+                <li class="nav__items">
+                    <a href="#" class="nav__links">Acerca de</a>
+                </li>
+          
+                <img src="./Images/close.svg" alt="" class="nav__close"> 
+            </ul>
+
+            <div class="nav__menu">
+                <img src="Images/menu.svg" alt="" class="nav__img">
+            </div>
+        </nav>
+        <section class="hero__container container">
+            <h1 class="hero__tittle">Sistema Gestión de Inventario para Empresas</h1>
+            <p class="hero_paragraph">Toda su gestión en un solo lugar.</p>
+            <a href="/login" class="cta"> Ingresar </a>
+            <a href="/register" class="nav__links">Registrarse</a>
+        </section>
+    </header>
+
+    <!-- <main>
+        <section class="container about"> 
+            <h2 class="subtitle">¿Qué aprenderás en este curos?</h2>
+            <p class="about__paragraph">Todo lo necesarioy obligatorio de CSS, (Flezbox, Grid, Custom properties, position, Animaciones, Box model y más)</p>
+
+            <div class="about__main">
+                <article class="about__icons">
+                    <img src="Images/invader.svg" alt="" class="about__icon">
+                    <h3 class="about__title">CSS Layouts</h3>
+                    <p class="about__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure dolor, itaque excepturi placeat tempore doloremque vitae mollitia accusantium iusto rem accusamus soluta explicabo minus, alias iste! Vero quibusdam quidem recusandae?</p>
+                </article>
+
+                <article class="about__icons">
+                    <img src="Images/invader.svg" alt="" class="about__icon"> 
+                    <h3 class="about__title">Animaciones</h3>
+                    <p class="about__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure dolor, itaque excepturi placeat tempore doloremque vitae mollitia accusantium iusto rem accusamus soluta explicabo minus, alias iste! Vero quibusdam quidem recusandae?</p>
+                </article>
+
+                <article class="about__icons">
+                    <img src="Images/invader.svg" alt="" class="about__icon">
+                    <h3 class="about__title">Sass</h3>
+                    <p class="about__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure dolor, itaque excepturi placeat tempore doloremque vitae mollitia accusantium iusto rem accusamus soluta explicabo minus, alias iste! Vero quibusdam quidem recusandae?</p>
+                </article>
+            </div>
+
+        </section>
+
+        <section class="knowledge">
+            <div class="knowledge__container container" >
+                <div class="knowledge__texts">
+                    <h2 class="subtitle">aqui debería haber algo para ti, un arma tal vez. Dispara una vez por todas!</h2>
+                    <p class="knowledge__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus fugiat doloribus facere. Dolore ad minima dolorum eligendi quisquam corporis deleniti fugiat fugit nostrum iste. Repellendus magnam nisi consequuntur reiciendis veniam.</p>
+                    <a href="#" class="cta">Entra al curso</a>
+                </div>
+
+                <figure class="knowledge__picture">
+                    <img src="Images/2.jpg" alt="" class="knowledge__img">
+                </figure>
+            </div>
+        </section>
+
+
+        <section class="questions container">
+            <h2 class="subtitle"> Preguntas frecuentes</h2>
+            <p class="questions-paragraph">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam dicta obcaecati vitae nesciunt tempore officiis veniam.</p>
+
+            <section class="questions-container">
+                <article class="questions-padding">
+                    <div class="questions-answer">
+                        <h3 class="questions-title">¿Qué es CSS?
+                            <span class="questions-arrow">
+                                <img src="Images/arrow.svg" alt="" class="questions-img">
+                            </span>
+                        </h3>
+                        <p class="questions-show">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis dicta incidunt, ipsam molestiae ea necessitatibus quo error iste sunt blanditiis totam illo voluptatibus. Hic neque architecto, alias nemo minima quae. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore nobis vel quisquam voluptatibus consectetur aut rem velit adipisci quaerat sapiente ullam, architecto soluta libero fugit voluptatum corporis suscipit modi. Cum?</p>
+                    </div>
+                </article>
+
+                <article class="questions-padding">
+                    <div class="questions-answer">
+                        <h3 class="questions-title">¿Qué es CSS grid?
+                            <span class="questions-arrow">
+                                <img src="Images/arrow.svg" alt="" class="questions-img">
+                            </span>
+                        </h3>
+                        <p class="questions-show">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis dicta incidunt, ipsam molestiae ea necessitatibus quo error iste sunt blanditiis totam illo voluptatibus. Hic neque architecto, alias nemo minima quae. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore nobis vel quisquam voluptatibus consectetur aut rem velit adipisci quaerat sapiente ullam, architecto soluta libero fugit voluptatum corporis suscipit modi. Cum?</p>
+                    </div>
+                </article>
+
+                <article class="questions-padding">
+                    <div class="questions-answer">
+                        <h3 class="questions-title">¿Qué aprenderé?
+                            <span class="questions-arrow">
+                                <img src="Images/arrow.svg" alt="" class="questions-img">
+                            </span>
+                        </h3>
+                        <p class="questions-show">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis dicta incidunt, ipsam molestiae ea necessitatibus quo error iste sunt blanditiis totam illo voluptatibus. Hic neque architecto, alias nemo minima quae. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore nobis vel quisquam voluptatibus consectetur aut rem velit adipisci quaerat sapiente ullam, architecto soluta libero fugit voluptatum corporis suscipit modi. Cum?</p>
+                    </div>
+                </article>
+            </section>
+
+        </section>
+    </main> -->
+
+    <script src="js/slider.js"></script>
+</body>
+</html>

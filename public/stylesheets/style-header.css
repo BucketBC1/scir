@@ -1,0 +1,17 @@
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header input {
+    outline: none;
+    border: none;
+    max-width: 479px;
+    width: 100%;
+}
+
+header .icon {
+    font-size: 15px;
+    margin-right: 10px;
+}

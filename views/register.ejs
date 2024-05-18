@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/stylesheets/style_register.css">
+
+    <title><%= title %></title>
+</head>
+
+<body>
+
+    <form action="/register" method="POST" class="form-container">
+        <div class="head">
+            <h2>Registro</h2>
+        </div>
+
+        <div class="form">
+
+            <div class="first-column">
+
+                <div class="input-wrapper">
+
+                    <label>Nombres:</label>
+                    <input type="text" name="nombres" placeholder="Nombres">
+                </div>
+
+                <div class="input-wrapper">
+
+                    <label>Identificación:</label>
+                    <input type="text" name="identificacion" placeholder="Identificación">
+                </div>
+
+                <div class="input-wrapper">
+
+                    <label>Correo corporativo:</label>
+                    <input type="email" name="correo" placeholder="Correo">
+                </div>
+
+                <div class="input-wrapper">
+
+                    <label>Contraseña:</label>
+                    <input type="password" name="contraseña" placeholder="Contraseña">
+                </div>
+            </div>
+
+            <div class="second-column">
+
+                <div class="input-wrapper">
+
+                    <label>Apellidos:</label>
+                    <input type="text" name="apellidos" placeholder="Apellidos">
+                </div>
+
+                <div class="input-wrapper">
+
+                    <label>Celular:</label>
+                    <input type="text" name="celular" placeholder="Celular">
+                </div>
+
+                <div class="input-wrapper">
+
+                    <label>Confirmar correo:</label>
+                    <input type="email" name="correo-con" placeholder="Confirmar correo">
+                </div>
+
+                <div class="input-wrapper">
+
+                    <label>Cofirmar contraseña:</label>
+                    <input type="password" placeholder="Confirmar contraseña">
+                </div>
+            </div>
+        </div>
+
+        <div class="area">
+
+            <div>
+                <label>Departamento:</label> <br>
+                <select name="tipoUsuario" > 
+                    <option disabled selected ="">Departamento</Option>
+                    <option value="Compras">Compras</option>
+                    <option value="Proyectos">Proyectos</option>
+                    <option value="Diseño">Diseño</option>
+                    <option value="Recursos humanos">Recursos humanos</option>
+                    <option value="Operaciones y mantenimiento">Operaciones y mantenimiento</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="btnn">
+
+            <div>
+                <button>Registrarse</button>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

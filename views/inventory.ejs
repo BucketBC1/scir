@@ -1,0 +1,315 @@
+<%- include('layout/nav')%>
+
+
+
+
+
+
+<!-- ====== MAIN ======= -->
+<main>
+    <div class="container">
+
+        <!-- ===== FILTROS ===== -->
+        <div class="filters">
+            <form action="">
+                <div class="filtersContainer">
+                    <div>
+                        <label>Categoría</label>
+                        <select name="" id="">
+
+                            <option disabled selected="" id="disabledSelect">Categoría</option>
+                            <% categories.forEach(function(dato) { %>
+                                <option value="<%= dato.nombre %>"><%= dato.nombre %></option>
+                            <% }); %>
+            
+                        </select>
+                    </div>
+                    <div>
+                        <label>Material</label>
+                        <select name="" id="">
+
+                            <option disabled selected="" id="disabledSelect">Material</option>
+                            <% categories.forEach(function(dato) { %>
+                                <option value="<%= dato.material %>"><%= dato.material %></option>
+                            <% }); %>
+                            
+                        </select>
+                    </div>
+                    <div>
+                        <label>Subcategoría</label>
+                        <select name="" id="">
+
+                            <option disabled selected="" id="disabledSelect">Subcategoría</option>
+                            <% sub.forEach(function(dato) { %>
+                                <option value="<%= dato.nombre %>"><%= dato.nombre  %></option>
+                            <% }); %>
+            
+                        </select>
+                    </div>
+                    <div>
+                        <label>Diametro</label>
+                        <select name="" id="">
+                            <option disabled selected="" id="disabledSelect">Diametro</option>
+                            <% specs.forEach(function(spec) { %>
+                                <option value="<%= spec.diametro %>"><%= spec.diametro %></option>
+                            <% }); %>
+            
+                        </select>
+                    </div>
+                </div>
+
+                <button class="addF" type="submit" >Aplicar filtros</button>  
+            </form>
+        </div>
+        <!-- ===== FILTROS ===== -->
+
+
+        <!-- ===== TABLE ===== -->
+        <div class="tableContainer">
+            <a class="btna" href="">
+                <i class='bx bxs-chevron-left'></i>
+            </a>
+            <div class="table">
+                <% 
+                // Ordenar la tabla alfabéticamente por nombre y luego por material
+                categories.sort((a, b) => {
+                    // Si los nombres son diferentes, ordenar por nombre
+                    const nombreComparison = a.nombre.localeCompare(b.nombre);
+                    if (nombreComparison !== 0) return nombreComparison;
+
+                    // Si los nombres son iguales, ordenar por material
+                    return a.material.localeCompare(b.material);
+                });
+                
+                categories.forEach(categoria => { %>
+                    <h4><%= categoria.nombre %> - <%= categoria.material %></h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <% if (specs.some(spec => spec.categoria === categoria.nombre && spec.material === categoria.material && spec.subcategoria !== null)) { %>
+                                    <th>Subcategoría</th>
+                                <% } %>
+                                <% if (specs.some(spec => spec.categoria === categoria.nombre && spec.material === categoria.material && spec.diametro !== null)) { %>
+                                    <th>Diametro</th>
+                                <% } %>
+                                <% if (specs.some(spec => spec.categoria === categoria.nombre && spec.material === categoria.material && spec.longitud !== null)) { %>
+                                    <th>Longitud</th>
+                                <% } %>
+                                <% if (specs.some(spec => spec.categoria === categoria.nombre && spec.material === categoria.material && spec.cantidad !== null)) { %>
+                                    <th>Cantidad</th>
+                                <% } %>
+                                <% if (specs.some(spec => spec.categoria === categoria.nombre && spec.material === categoria.material && spec.codigo !== null)) { %>
+                                    <th>Código</th>
+                                <% } %>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%
+                            // Ordenar la tabla alfabéticamente por subcategoria y luego por diametro
+                            specs.sort((a, b) => {
+                                // Si subcategoria está vacía, ordenar por diametro
+                                if (!a.subcategoria && b.subcategoria) return 1;
+                                if (a.subcategoria && !b.subcategoria) return -1;
+                                
+                                // Si ambas subcategorias están vacías, ordenar por diametro
+                                if (!a.subcategoria && !b.subcategoria) {
+                                    if (a.diametro && b.diametro) return a.diametro.localeCompare(b.diametro);
+                                    else if (!a.diametro && b.diametro) return 1;
+                                    else if (a.diametro && !b.diametro) return -1;
+                                    else return 0;
+                                }
+
+                                // Si ambas subcategorias están definidas, ordenar alfabéticamente
+                                const subcategoriaComparison = a.subcategoria.localeCompare(b.subcategoria);
+                                if (subcategoriaComparison !== 0) return subcategoriaComparison;
+                                
+                                // Si subcategoria es igual, ordenar por diametro
+                                if (a.diametro && b.diametro) return a.diametro.localeCompare(b.diametro);
+                                else if (!a.diametro && b.diametro) return 1;
+                                else if (a.diametro && !b.diametro) return -1;
+                                else return 0;
+                            });
+                            // Renderizar la tabla ordenada
+                            specs.forEach(spec => {
+                                if (spec.categoria === categoria.nombre && spec.material === categoria.material) {
+                            %>
+                                <tr>
+                                    <% if (spec.subcategoria !== null) { %>
+                                        <td style="color: #2B78E4;"><%= spec.subcategoria %></td>
+                                    <% } %>
+                                    <% if (spec.diametro !== null) { %>
+                                        <td><%= spec.diametro %></td>
+                                    <% } %>
+                                    <% if (spec.cantidad !== null) { %>
+                                        <td><%= spec.cantidad %></td>
+                                    <% } %>
+                                    <% if (spec.longitud !== null) { %>
+                                        <td><%= spec.longitud %>m</td>
+                                    <% } %>
+                                    <% if (spec.codigo !== null) { %>
+                                        <td><%= spec.codigo %></td>
+                                    <% } %>
+                                    <td class="actions">
+                                        <a href="/delete?id=<%= spec._id %>">
+                                            <i class='bx bxs-trash-alt icon'></i>
+                                        </a>
+                                        <button href="#" class="edit-btn" onclick="showEditDialog('<%= spec._id %>')">
+                                            <i class='bx bxs-edit icon'></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <!-- Form de actualización -->
+                                <dialog id="edit-dialog-<%= spec._id %>">
+                                    <form action="/update/<%= spec._id %>" method="POST">
+                                        <input type="text" name="subcategoria" placeholder="subcategoria">
+                                        <input type="text" name="diametro" placeholder="diametro">
+                                        <input type="text" name="cantidad" placeholder="cantidad">
+                                        <input type="text" name="longitud" placeholder="longitud">
+                                        <input type="text" name="codigo" placeholder="codigo">
+                                        <button type="submit">Guardar</button>
+                                    </form>
+                                    <button id="close-dialog" onclick="closeEditDialog('<%= spec._id %>')">Cerrar</button>
+                                </dialog>
+                                <!-- Form de actualización -->
+                            <% }
+                            });
+                            %>
+                        </tbody>
+                    </table>
+                <% }); %>
+                
+            </div>
+            <a class="btna" href="">
+                <i class='bx bxs-chevron-right' ></i>
+            </a>
+        </div>
+        <!-- ===== TABLE ===== -->
+    </div>
+</main>
+<!-- ====== MAIN ======= -->
+
+
+
+<!-- ====== FORMS ====== -->
+<article class="category-sub">
+
+    <div class="formContainer">
+
+        <!-- ======= CATEGORIES ======== -->
+        <div class="categories">
+
+            <span>Categorias</span>
+            
+            <form class="form1" method="POST" action="/addCategory">
+
+                <div class="inputText">
+                    <div>
+                        <label>Nombre</label>
+                        <input type="text" class="input" name="nombre">
+                    </div>
+                
+                    <div>
+                        <label>Material</label>
+                        <input type="text" class="input" name="material">
+                    </div>
+                </div>
+
+                <button class="btnAdd" type="submit" >Agregar</button>  
+            </form>
+        </div>
+        <!-- ======= CATEGORIES ======== -->
+        <hr>
+
+        <!-- ======= SUBCATEGORIES ======== -->
+        <div class="subcategories">
+
+            <span>Sub-categorias</span>
+
+            <form class="form2" action="/addSub" method="post">
+
+                <div class="inputText2">
+
+                    <div>
+                        <label>Nombre:</label>
+                        <input type="text" class="input" name="nombre" id="subcategoria">
+                    </div>
+                    
+
+                </div>
+
+                
+
+                <button class="btnAdd" type="submit">Agregar</button>
+            </form>
+        </div>
+        <!-- ======= SUBCATEGORIES ======== -->
+        <hr>
+
+        <!-- ======= SPECS ======== -->
+        <div class="specs">
+
+            <span>Especificaciones</span>
+
+            <form class="form3" action="/addSpec" method="POST">
+                
+                <div class="seleccion">
+
+                    <div>
+
+                        <!-- <label>Categoría</label> -->
+                        <select name="dato" id="" class="input">
+                            <option disabled selected="" id="disabledSelect">Categoría</option>
+                            <% categories.forEach(function(dato) { %>
+                                <option value="<%= dato.nombre %> - <%= dato.material %>"><%= dato.nombre %> - <%= dato.material %></option>
+                            <% }); %>
+                        </select>
+                    </div>
+
+                    <div>
+
+                        <!-- <label>Sub-categoría</label> -->
+                        <select name="subcategoria" id="" class="input">
+                            <option disabled selected="" id="disabledSelect">Sub-categoría</option>
+                            <% sub.forEach(function(dato) { %>
+                                <option value="<%= dato.nombre %>"><%= dato.nombre %></option>
+                            <% }); %>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="spc">
+                    <div>
+                        <label>Diametro</label>
+                        <input type="text" name="diametro" class="input2" >
+                    </div>
+
+                    <div>
+                        <label>Cantidad</label>
+                        <input type="text" name="cantidad" class="input2">
+                    </div>
+
+                    <div>
+                        <label>longitud</label>
+                        <input type="text" name="longitud" class="input2" >
+                    </div>
+
+                    <div>
+                        <label>Codigo</label>
+                        <input type="text" name="codigo" class="input2">
+                    </div>
+                </div>
+
+                <button class="btnAdd" type="submit">Agregar</button>
+            </form>
+        </div>
+        <!-- ======= SPECS ======== -->
+
+    </div>
+
+</article>
+<!-- ====== FORMS ====== -->
+
+
+
+<%- include('layout/footer')%>

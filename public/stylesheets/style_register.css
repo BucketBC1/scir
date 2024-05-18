@@ -1,0 +1,134 @@
+
+
+
+html {
+    font-family: 'Montserrat', sans-serif;
+}
+
+:root {
+    --body-color: #D9D9D9;
+    --primary-color: #2B78E4;
+    --text-color: #A6A6A6;
+    --bar-color: #FFF;
+}
+
+/* ===== Body ===== */
+
+body {
+    background: var(--body-color);
+    margin: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+}
+
+.form-container {
+    height: 700px;
+    width: 600px;
+    background: var(--bar-color);
+    vertical-align: middle;
+    padding: 0 30px 30px 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.form {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+}
+
+form .head h2 {
+    margin-top: 20px;
+    margin-bottom: 0;
+    display: flex;
+    justify-content: center;
+    transform: translateY(60%);
+    color: #797979;
+}
+
+form .area {
+    display: flex;
+    justify-content: center;
+}
+
+form .btnn {
+    display: flex;
+    justify-content: center;
+}
+
+form label {
+    margin-left: 10px;
+    margin-top: 15px;
+    margin-bottom: 7px;
+    font-weight: 500;
+    color: #545454;
+}
+
+/* ===== Buttons ===== */
+
+form input {
+    background: #E4E4E4;
+    height: 44px;
+    width: 238px;
+    border-radius: 10px;
+    border: 0;
+    outline: none;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 7px;
+}
+
+
+form .btnn div button {
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 100px;
+    background: var(--primary-color);
+    color: #fff;
+    outline: none;
+    cursor: pointer;
+    outline: none;
+    font-family: 'Montserrat', sans-serif;
+    border: none;
+}
+
+form .btnn:hover button {
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+input::placeholder {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+}
+
+form .input-wrapper {
+    margin: 30px 0;
+}
+
+form .btnn button{
+    margin-top: 30px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.form-container .area select {
+    padding: 0 20px 0 20px;
+    background: #E4E4E4;
+    border: none;
+    height: 44px;
+    width: 238px;
+    outline: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    color: #545454;
+    margin-top: 7px;
+    border-radius: 10px;
+    appearance: none;
+}

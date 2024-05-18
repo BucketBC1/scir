@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/stylesheets/style-header.css">
+    <link rel="stylesheet" href="/stylesheets/style-layout.css">
+    <link rel="stylesheet" href="/stylesheets/style-main.css">
+    <link rel="stylesheet" href="/stylesheets/style-sidebar.css">
+    <link rel="stylesheet" href="/stylesheets/style-addCaSub.css">
+    <title><%= title%></title>
+</head>
+<body>
+    <div class="layout">
+
+        <header>
+
+            <i class='bx bx-search icon'></i>
+            <input type="text" class="search" name="query" placeholder="Buscar...">
+
+        </header>
+
+        <nav>
+            <div class="menu-bar">
+
+                <div class="workerInfo" style="display: flex; flex-direction: column; bottom: 0;">
+
+                
+                    
+                    <span></span>
+
+                </div>
+                
+                <ul class="menu-links">
+                
+                    <li class="nav-link">
+                        <a href="/inventory">
+                            <i class='bx bxs-home icon'></i>
+                            <span class="nav-text">Inventario</span>
+                        </a>
+                    </li>
+                
+                    <li class="nav-link">
+                        <a href="/notifications">
+                            <i class='bx bxs-bell icon'></i>
+                            <span class="nav-text">Notificaciones</span>
+                        </a>
+                    </li>
+                
+                    <li class="nav-link">
+                        <a href="/request">
+                            <i class='bx bxs-comment icon' ></i>
+                            <span class="nav-text">Requerimientos</span>
+                        </a>
+                    </li>
+                
+                    <li class="nav-link">
+                    <a href="/suppliers">
+                        <i class='bx bx-spreadsheet icon'></i>
+                        <span class="nav-text">Proveedores</span>
+                    </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>

@@ -1,0 +1,91 @@
+:root {
+    --body-color: #D9D9D9;
+    --primary-color: #2B78E4;
+    --text-color: #566573;
+    --bar-color: #FFF;
+    --secondary-color: #AED6F1;
+  
+    --tran-02: all 0.2s ease;
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.4s ease;
+    --tran-05: all 0.5s ease;  
+}
+
+nav .menu-bar .menu-links,
+nav .menu-bar .menu-links .nav-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    width: 100%;
+}
+
+.nav-text {
+    display: none;
+}
+
+nav .icon {
+    font-size: 20px;
+}
+
+nav .workerInfo {
+    display: none;
+}
+
+
+
+@media (min-width: 710px) {  /* 480px */
+
+    nav .menu-bar {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        max-width: 180px;
+        width: 100%;
+    }
+
+    nav .menu-bar .menu-links {
+        display: flex;
+        flex-direction: column;
+        width: auto;
+        align-items: baseline;
+        gap: 7.5px;
+        padding: 4px ;
+
+    }
+
+    nav .menu-bar .menu-links .nav-link {    
+        width: auto;
+        cursor: pointer;
+        padding: 7.5px ;
+        cursor: pointer;
+    }
+
+    nav .menu-bar .menu-links .nav-link a {
+        width: auto;
+        display: flex;
+        text-decoration: none;
+
+    }
+
+    .nav-link a .icon {
+        margin-right: 20px;
+        font-size: 15px;
+        color: var(--text-color);
+    }
+
+    .nav-text {
+        display: block;
+        font-size: 12px;
+        color: var(--text-color);
+    }
+
+    nav .workerInfo {
+        max-width: 100%;
+        width: auto;
+        display: flex;
+        height: 180px;
+        background: var(--primary-color);
+    }
+
+}
