@@ -1,9 +1,16 @@
-//imports
+
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const path = require('path');
+
+//imports
+const routes = require('./routes/routes');
+const user = require('./routes/user');
+const categories = require('./routes/categories');
+const specs = require('./routes/specs');
+const subcategories = require('./routes/subcategories');
 
 
 const app = express();
@@ -38,11 +45,19 @@ app.use((req, res, next) => {
 
 
 //Routes
-app.use(require('./routes/routes'));
-app.use(require('./routes/user'));
-app.use(require('./routes/categories'));
-app.use(require('./routes/specs'));
-app.use(require('./routes/subcategories'));
+app.use(routes);
+app.use(user);
+app.use(categories);
+app.use(subcategories);
+app.use(specs);
+
+//test
+/* routes(app);
+user(app);
+categories(app);
+subcategories(app);
+specs(app); */
+
 
 
 // set template engine
