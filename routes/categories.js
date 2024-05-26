@@ -2,16 +2,20 @@ const express = require('express');
 const cateSchema = require('../models/categories');
 const router = express.Router();
 
-
-
+function capitalizeFirstLetter(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+}
 
 router.post("/addCategory", (req, res) => {
-    const { nombre, material } = req.body;
+    let { nombre, material } = req.body;
+
+    nombre = capitalizeFirstLetter(nombre);
 
     const category = new cateSchema({ nombre, material});
 
     category.save()
         .then(() => {
+
             res.redirect('/inventory');
         })
         .catch(error => {

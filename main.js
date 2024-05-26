@@ -43,6 +43,16 @@ app.use((req, res, next) => {
     next();
 });
 
+// Middleware para pasar datos del usuario a las vistas
+app.use((req, res, next) => {
+    if (req.session.user) {
+        res.locals.user = req.session.user;
+    } else {
+        res.locals.user = null;
+    }
+    next();
+});
+
 
 //Routes
 app.use(routes);

@@ -11,47 +11,59 @@
 
         <!-- ===== FILTROS ===== -->
         <div class="filters">
-            <form action="">
+            <form action="/search" method="get">
                 <div class="filtersContainer">
                     <div>
                         <label>Categoría</label>
-                        <select name="" id="">
+                        <select name="categoria" id="">
 
                             <option disabled selected="" id="disabledSelect">Categoría</option>
-                            <% categories.forEach(function(dato) { %>
-                                <option value="<%= dato.nombre %>"><%= dato.nombre %></option>
+                            <% 
+                                const uniqueSortedNames = Array.from(new Set(categories.map(cat => cat.nombre))).sort();
+                            %>
+                            <% uniqueSortedNames.forEach(function(nombre) { %>
+                                <option value="<%= nombre %>"><%= nombre %></option>
                             <% }); %>
             
                         </select>
                     </div>
                     <div>
                         <label>Material</label>
-                        <select name="" id="">
+                        <select name="material" id="">
 
                             <option disabled selected="" id="disabledSelect">Material</option>
-                            <% categories.forEach(function(dato) { %>
-                                <option value="<%= dato.material %>"><%= dato.material %></option>
+                            <% 
+                                const uniqueSortedMaterial = Array.from(new Set(categories.map(cat => cat.material))).sort();
+                            %>
+                            <% uniqueSortedMaterial.forEach(function(material) { %>
+                                <option value="<%= material %>"><%= material %></option>
                             <% }); %>
                             
                         </select>
                     </div>
                     <div>
                         <label>Subcategoría</label>
-                        <select name="" id="">
+                        <select name="subcategoria" id="">
 
                             <option disabled selected="" id="disabledSelect">Subcategoría</option>
-                            <% sub.forEach(function(dato) { %>
-                                <option value="<%= dato.nombre %>"><%= dato.nombre  %></option>
+                            <% 
+                                const uniqueSortedSub = Array.from(new Set(sub.map(cat => cat.nombre))).sort();
+                            %>
+                            <% uniqueSortedSub.forEach(function(nombre) { %>
+                                <option value="<%= nombre %>"><%= nombre  %></option>
                             <% }); %>
             
                         </select>
                     </div>
                     <div>
                         <label>Diametro</label>
-                        <select name="" id="">
+                        <select name="diametro" id="">
                             <option disabled selected="" id="disabledSelect">Diametro</option>
-                            <% specs.forEach(function(spec) { %>
-                                <option value="<%= spec.diametro %>"><%= spec.diametro %></option>
+                            <% 
+                                const uniqueSortedDiameter = Array.from(new Set(specs.map(cat => cat.diametro))).sort();
+                            %>
+                            <% uniqueSortedDiameter.forEach(function(diametro) { %>
+                                <option value="<%= diametro %>"><%= diametro %></option>
                             <% }); %>
             
                         </select>
@@ -162,8 +174,18 @@
                                 <!-- Form de actualización -->
                                 <dialog id="edit-dialog-<%= spec._id %>">
                                     <form action="/update/<%= spec._id %>" method="POST">
-                                        <input type="text" name="subcategoria" placeholder="subcategoria">
-                                        <input type="text" name="diametro" placeholder="diametro">
+                                        <select name="subcategoria" id="" class="input">
+                                            <option disabled selected="" id="disabledSelect">Sub-categoría</option>
+                                            <% sub.forEach(function(dato) { %>
+                                                <option value="<%= dato.nombre %>"><%= dato.nombre %></option>
+                                            <% }); %>
+                                        </select>
+                                        <select name="diametro" id="">
+                                            <option disabled selected="" id="disabledSelect">Diametro</option>
+                                            <% specs.forEach(function(spec) { %>
+                                                <option value="<%= spec.diametro %>"><%= spec.diametro %></option>
+                                            <% }); %>
+                                        </select>
                                         <input type="text" name="cantidad" placeholder="cantidad">
                                         <input type="text" name="longitud" placeholder="longitud">
                                         <input type="text" name="codigo" placeholder="codigo">
@@ -181,7 +203,7 @@
                 
             </div>
             <a class="btna" href="">
-                <i class='bx bxs-chevron-right' ></i>
+                <i class='bx bxs-chevron-right'></i>
             </a>
         </div>
         <!-- ===== TABLE ===== -->
@@ -260,7 +282,23 @@
                         <!-- <label>Categoría</label> -->
                         <select name="dato" id="" class="input">
                             <option disabled selected="" id="disabledSelect">Categoría</option>
-                            <% categories.forEach(function(dato) { %>
+                            <% 
+                            categories.sort(function(a, b) {
+                                if (a.nombre < b.nombre) {
+                                    return -1;
+                                }
+                                if (a.nombre > b.nombre) {
+                                    return 1;
+                                }
+                                if (a.material < b.material) {
+                                    return -1;
+                                }
+                                if (a.material > b.material) {
+                                    return 1;
+                                }
+                                return 0;
+                            });
+                                categories.forEach(function(dato) { %>
                                 <option value="<%= dato.nombre %> - <%= dato.material %>"><%= dato.nombre %> - <%= dato.material %></option>
                             <% }); %>
                         </select>
@@ -271,8 +309,11 @@
                         <!-- <label>Sub-categoría</label> -->
                         <select name="subcategoria" id="" class="input">
                             <option disabled selected="" id="disabledSelect">Sub-categoría</option>
-                            <% sub.forEach(function(dato) { %>
-                                <option value="<%= dato.nombre %>"><%= dato.nombre %></option>
+                            <% 
+                                const uniqueSortedSubC = Array.from(new Set(sub.map(cat => cat.nombre))).sort();
+                            %>
+                            <% uniqueSortedSubC.forEach(function(nombre) { %>
+                                <option value="<%= nombre %>"><%= nombre %></option>
                             <% }); %>
                         </select>
                     </div>
@@ -310,6 +351,15 @@
 </article>
 <!-- ====== FORMS ====== -->
 
+<script>
+    function showEditDialog(id) {
+        document.getElementById('edit-dialog-' + id).showModal();
+    }
+
+    function closeEditDialog(id) {
+        document.getElementById('edit-dialog-' + id).close();
+    }
+</script>
 
 
 <%- include('layout/footer')%>

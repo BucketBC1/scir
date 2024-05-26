@@ -34,7 +34,7 @@ html {
         grid-template-rows: 5vh auto auto;
         grid-template-columns: 180px auto;
         grid-template-areas: 
-        'header header'
+        'sidebar header'
         'sidebar main'
         'sidebar category-sub';
     }
@@ -61,6 +61,6 @@ main {
     display: none;
     grid-area: category-sub;
     background-color: var(--body-color);
-    width: 100%;
+    /* width: 100%; */
 }
 

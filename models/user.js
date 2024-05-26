@@ -10,7 +10,9 @@ const userSchema = new mongoose.Schema( {
     celular: {type: String, required: true},
     correo: {type: String, required: true},
     contraseña: {type: String, required: true},
-    tipoUsuario: {type: String, required: true}
+    tipoUsuario: {type: String, required: true},
+    image: {type: String, required: false},
+    created: {type: Date, required: true, default: Date.now }
 });
 
 userSchema.pre('save', function(next){

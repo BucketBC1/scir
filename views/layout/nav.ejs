@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="/stylesheets/style-main.css">
     <link rel="stylesheet" href="/stylesheets/style-sidebar.css">
     <link rel="stylesheet" href="/stylesheets/style-addCaSub.css">
+    <link rel="stylesheet" href="/stylesheets/style-profile.css">
+
     <title><%= title%></title>
 </head>
 <body>
@@ -17,21 +19,25 @@
 
         <header>
 
-            <i class='bx bx-search icon'></i>
-            <input type="text" class="search" name="query" placeholder="Buscar...">
-
+            <form action="/search" method="GET">
+                <input type="text" class="search" name="query" placeholder="Buscar...">
+                <button type="submit"><i class='bx bx-search icon'></i></button>
+            </form>
         </header>
 
         <nav>
             <div class="menu-bar">
-
-                <div class="workerInfo" style="display: flex; flex-direction: column; bottom: 0;">
-
                 
+                <a  class="workerInfo" href="/profile">
                     
-                    <span></span>
+                    <div class="image">
 
-                </div>
+                        <img src="<%= user.image %>" alt="">
+                    </div>
+
+                    <label id="name"><%= user.nombres %></label>
+                    <label id="email"><%= user.correo %></label>
+                </a>
                 
                 <ul class="menu-links">
                 

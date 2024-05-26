@@ -14,10 +14,29 @@
 
 <body>
 
-    <form action="/register" method="POST" class="form-container">
-        <div class="head">
-            <h2>Registro</h2>
+    
+    <form action="/register" method="POST" class="form-container" id="theForm">
+
+
+        <% if (user) { %>
+        <div class="message" id="message">
+            <strong><%= user.message %></strong>
         </div>
+        <% } %>
+
+        <div class="messageFail" id="messageMail" style="display: none;">
+            <strong>El correo no coincide :(</strong>
+        </div>
+
+        <div class="messageFail" id="messagePassword" style="display: none;">
+            <strong>La contraseña no coincide :(</strong>
+        </div>
+
+        <div class="messageFail" id="characteresPassword" style="display: none;">
+            <strong>La contraseña no cumple con los caracteres mínimos :(</strong>
+        </div>
+
+        <label class="title">Registro</label>
 
         <div class="form">
 
@@ -38,13 +57,14 @@
                 <div class="input-wrapper">
 
                     <label>Correo corporativo:</label>
-                    <input type="email" name="correo" placeholder="Correo">
+                    <input type="email" name="correo" placeholder="Correo" id="email">
                 </div>
 
                 <div class="input-wrapper">
 
-                    <label>Contraseña:</label>
-                    <input type="password" name="contraseña" placeholder="Contraseña">
+                    <label>Contraseña <i class='bx bx-help-circle iconHelp' onclick="mostrarTexto()"></i></label>
+                    <span id="tooltiptext">La contraseña debe tener mínimo 8 caracteres, una mayúscula y un número.  </span>
+                    <input type="password" name="contraseña" placeholder="Contraseña" id="password">
                 </div>
             </div>
 
@@ -65,13 +85,13 @@
                 <div class="input-wrapper">
 
                     <label>Confirmar correo:</label>
-                    <input type="email" name="correo-con" placeholder="Confirmar correo">
+                    <input type="email" name="correo-con" placeholder="Confirmar correo" id="verifyMail">
                 </div>
 
                 <div class="input-wrapper">
 
                     <label>Cofirmar contraseña:</label>
-                    <input type="password" placeholder="Confirmar contraseña">
+                    <input type="password" placeholder="Confirmar contraseña" id="confirmPassword">
                 </div>
             </div>
         </div>
@@ -80,7 +100,7 @@
 
             <div>
                 <label>Departamento:</label> <br>
-                <select name="tipoUsuario" > 
+                <select name="tipoUsuario" class="select"> 
                     <option disabled selected ="">Departamento</Option>
                     <option value="Compras">Compras</option>
                     <option value="Proyectos">Proyectos</option>
@@ -97,8 +117,19 @@
                 <button>Registrarse</button>
             </div>
         </div>
+        <div>
+            <a href="/login">Login</a>
+        </div>
+        
     </form>
 </body>
+
+<script src="/scripts/compare.js"></script>
+<script src="/scripts/helpbutton.js"></script>
+<script src="/scripts/characteresPassword.js"></script>
+
+
+
 </html>
 
 

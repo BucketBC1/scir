@@ -100,6 +100,81 @@ router.post('/update/:id', async (req, res) => {
     }
 });
 /* ==== Actualizar dato ==== */
+
+/* ==== Busqueda ==== */
+router.get('/search', async (req, res) => {
+    const { categoria, material, subcategoria, diametro, query} = req.query;
+
+    let searchQuery = {};
+
+    if (query) {
+        const regex = new RegExp(query, 'i');
+        searchQuery = {
+            $or: [
+                { categoria : regex },
+                { material : regex },
+                {subcategoria : regex},
+                { diametro: regex}
+            ]
+        };
+    }
+
+    if (categoria) {
+        searchQuery.categoria = categoria;
+    }
+
+    if (material) {
+        searchQuery.material = material;
+    }
+
+    if (subcategoria) {
+        searchQuery.subcategoria = subcategoria;
+    }
+
+    if (diametro) {
+        searchQuery.diametro = diametro;
+    }
+
+    try {
+        const results = await Specs.find(searchQuery);
+
+        const groupedResults = results.reduce((acc, item) => {
+            if (!acc[item.categoria]) {
+                acc[item.categoria] = [];
+            }
+            if (!acc[item.categoria][item.material]) {
+                acc[item.categoria][item.material] = [];
+            }
+            acc[item.categoria][item.material].push(item);
+            return acc;
+        }, {});
+
+        const sortedGroupedResults = Object.keys(groupedResults)
+            .sort()
+            .reduce((acc, key) => {
+                acc[key] = Object.keys(groupedResults[key])
+                    .sort()
+                    .reduce((materialAcc, materialKey) => {
+                        materialAcc[materialKey] = groupedResults[key][materialKey]
+                            .sort((a, b) => {
+                                if (a.subcategoria < b.subcategoria) return -1;
+                                if (a.subcategoria > b.subcategoria) return 1;
+                                if (a.diametro < b.diametro) return -1;
+                                if (a.diametro > b.diametro) return 1;
+                                return 0;
+                            });
+                        return materialAcc;
+                    }, {});
+                return acc;
+            }, {});
+
+        res.render('searchResults', {title: "resultados", groupedResults: sortedGroupedResults, results});
+    }catch (err) {
+        console.error(err);
+        res.status(500).send('Error en la busqueda');
+    }   
+});
+/* ==== Busqueda ==== */
 /* ==== Inventory ==== */
 
 
@@ -117,6 +192,24 @@ router.get('/request', (req, res) => {
 router.get('/suppliers', (req, res) => {
     res.render('suppliers', {title: 'Proveedores'})
 });
+
+/* === profile === */
+router.get('/profile', (req, res) => {
+    try {
+        if (req.session.loggedIn) {
+
+            res.render('profile', { title: 'Perfil'});
+        } else {
+            res.redirect('/login');
+        }
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error del servidor');
+    }
+});
+
+/* === profile === */
+
 
 
 module.exports = router;

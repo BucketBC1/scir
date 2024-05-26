@@ -80,12 +80,45 @@ nav .workerInfo {
         color: var(--text-color);
     }
 
+    /* ==== Worker info ==== */
     nav .workerInfo {
         max-width: 100%;
         width: auto;
         display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         height: 180px;
         background: var(--primary-color);
+        margin-top: 5vh;
+        cursor: pointer;
+        text-decoration: none;
     }
+
+    nav .workerInfo .image {
+        background-color: var(--bar-color);
+        height: 110px;
+        width: 110px;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+
+    nav .workerInfo .image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    nav .workerInfo #name {
+        font-size: 14px;
+        color: white;
+        margin-top: 10px;
+    }
+
+    nav .workerInfo #email {
+        font-size: 11px;
+        color: white;
+    }
+    /* ==== Worker info ==== */
 
 }

@@ -1,6 +1,4 @@
 
-
-
 html {
     font-family: 'Montserrat', sans-serif;
 }
@@ -10,125 +8,167 @@ html {
     --primary-color: #2B78E4;
     --text-color: #A6A6A6;
     --bar-color: #FFF;
+    --secondary-color: #AED6F1;
 }
 
+
 /* ===== Body ===== */
+html {
+    margin: 0;
+}
 
 body {
     background: var(--body-color);
-    margin: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 70vh;
+    height: 95vh;
 }
 
 .form-container {
-    height: 700px;
-    width: 600px;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    align-items: center;
     background: var(--bar-color);
-    vertical-align: middle;
-    padding: 0 30px 30px 30px;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    padding: 15px;
 }
 
-.form {
-    margin-top: 30px;
+.form-container .form {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-
 }
 
-form .head h2 {
-    margin-top: 20px;
-    margin-bottom: 0;
+.form-container .form .first-column .input-wrapper,
+.form-container .form .second-column .input-wrapper {
     display: flex;
-    justify-content: center;
-    transform: translateY(60%);
-    color: #797979;
+    flex-direction: column;
+    padding: 10px;
 }
+/* ===== Body ===== */
 
-form .area {
-    display: flex;
-    justify-content: center;
-}
-
-form .btnn {
-    display: flex;
-    justify-content: center;
-}
-
-form label {
-    margin-left: 10px;
-    margin-top: 15px;
-    margin-bottom: 7px;
-    font-weight: 500;
-    color: #545454;
-}
-
-/* ===== Buttons ===== */
-
-form input {
-    background: #E4E4E4;
-    height: 44px;
-    width: 238px;
-    border-radius: 10px;
-    border: 0;
-    outline: none;
-    padding-left: 20px;
-    padding-right: 20px;
-    margin-top: 7px;
-}
-
-
-form .btnn div button {
-    font-size: 14px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 40px;
-    width: 100px;
-    background: var(--primary-color);
-    color: #fff;
-    outline: none;
-    cursor: pointer;
-    outline: none;
-    font-family: 'Montserrat', sans-serif;
+/* ===== buttons ===== */
+.form-container .form input,
+.form-container select {
+    background-color: var(--body-color);
     border: none;
+    height: 25px;
+    border-radius: 7px;
+    padding: 0 10px 0 20px;
+    width: 200px;
+    outline: none;
 }
 
-form .btnn:hover button {
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+.form-container .area .select {
+    width: 160px;
 }
 
-input::placeholder {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
-}
-
-form .input-wrapper {
-    margin: 30px 0;
-}
-
-form .btnn button{
-    margin-top: 30px;
+.form-container .btnn button {
+    background-color: var(--primary-color);
+    border: none;
+    color: white;
+    height: 30px;
     border-radius: 5px;
-    font-size: 14px;
+    margin: 15px 0 5px 0;
+    cursor: pointer;
 }
 
-.form-container .area select {
-    padding: 0 20px 0 20px;
-    background: #E4E4E4;
-    border: none;
-    height: 44px;
-    width: 238px;
-    outline: none;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
-    color: #545454;
-    margin-top: 7px;
-    border-radius: 10px;
-    appearance: none;
+.form-container .form label,
+.form-container .area label {
+    font-size: 12px;
 }
+
+.form-container a {
+    font-size: 14px;
+    color: var(--primary-color);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.form-container .title {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--primary-color);
+    margin: 5px auto;
+}
+
+/* ===== buttons ===== */
+
+/* ===== message ===== */
+.form-container .message {
+    background-color: #D5F5E3;
+    display: flex;
+    height: 25px;
+    align-items: center;
+    border: 1.5px solid #2ECC71;
+    border-radius: 7px;
+    margin-bottom: 10px;
+
+}
+
+.form-container .message strong {
+    font-weight: 100;
+    font-size: 15px;
+    padding: 5px;
+    color: #2ECC71;
+}
+
+/* ===== message ===== */
+
+/* ===== verify ===== */
+.form-container .messageFail {
+    background-color: #F2D7D5;
+    display: flex;
+    height: 25px;
+    align-items: center;
+    border: 1.5px solid #ff0000;
+    border-radius: 7px;
+    margin-bottom: 10px;
+}
+
+.form-container .messageFail strong {
+    font-weight: 100;
+    font-size: 15px;
+    padding: 5px;
+    color: #ff0000;
+
+}
+
+/* ===== verify ===== */
+
+/* === tooltip === */
+
+.form-container .input-wrapper .iconHelp {
+    color: #2B78E4;
+    cursor: pointer;
+}
+
+.form-container .input-wrapper #tooltiptext {
+    display: none;
+    width: 220px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    font-size: 12px;
+    left: 50%;
+    margin-left: -480px;
+}
+
+
+/* === tooltip === */
+
+
+
+
+
+
+
+
+
+
+
