@@ -1,0 +1,21 @@
+<%- include('layout/nav')%>
+
+<main>
+    <div class="profileContainer">
+        <div class="image">
+
+            <img src="<%= user.image %>" alt="">
+        </div>
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+
+            <input type="file" name="image"/>
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+</main>
+
+<article class="category-sub">
+
+</article>
+
+<%- include('layout/footer')%>

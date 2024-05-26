@@ -1,0 +1,138 @@
+<%- include('layout/nav')%>
+
+<style>
+    .tableContainer {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .table {
+        width: 80%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+    .table th, .table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+    .table th {
+        background-color: #f2f2f2;
+        text-align: left;
+    }
+    .category-header {
+        font-weight: bold;
+        padding: 10px 0;
+        background-color: #e0e0e0;
+        text-align: center;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .btna {
+        margin: 10px;
+    }
+</style>
+
+<!-- ====== MAIN ======= -->
+<main>
+    <div class="container">
+        <!-- ===== TABLE ===== -->
+        <div class="tableContainer">
+            <% 
+                // Ordenar las categorías y materiales
+                const sortedGroupedResults = Object.keys(groupedResults)
+                    .sort()
+                    .reduce((acc, key) => {
+                        acc[key] = Object.keys(groupedResults[key])
+                            .sort()
+                            .reduce((materialAcc, materialKey) => {
+                                materialAcc[materialKey] = groupedResults[key][materialKey]
+                                    .sort((a, b) => {
+                                        if (a.subcategoria < b.subcategoria) return -1;
+                                        if (a.subcategoria > b.subcategoria) return 1;
+                                        if (a.diametro < b.diametro) return -1;
+                                        if (a.diametro > b.diametro) return 1;
+                                        return 0;
+                                    });
+                                return materialAcc;
+                            }, {});
+                        return acc;
+                    }, {});
+                %>
+                <% for (let categoria of Object.keys(sortedGroupedResults)) { %>
+                    <% for (let material of Object.keys(sortedGroupedResults[categoria])) { %>
+                    <div class="table">
+                        <h4><%= categoria %> - <%= material %></h4>
+                        <table class="result-table">
+                            <thead>
+                                <tr>
+                                    <% if (results.some(spec => spec.subcategoria !== null)) { %>
+                                    <th>Subcategoría</th>
+                                    <% } %>
+
+                                    <% if (results.some(spec => spec.diametro !== null)) { %>
+                                    <th>Diametro</th>
+                                    <% } %>
+
+                                    <% if (results.some(spec => spec.longitud !== null)) { %>
+                                    <th>Longitud</th>
+                                    <% } %>
+
+                                    <% if (results.some(spec => spec.cantidad !== null)) { %>
+                                    <th>Cantidad</th>
+                                    <% } %>
+
+                                    <% if (results.some(spec => spec.codigo !== null)) { %>
+                                    <th>Código</th>
+                                    <% } %>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% sortedGroupedResults[categoria][material].forEach(result => { %>
+                            
+                                    <tr>
+                                        <% if (result.subcategoria !== null) { %>
+                                        <td><%= result.subcategoria %></td>
+                                        <% } %>
+
+                                        <% if (result.diametro !== null) { %>
+                                        <td><%= result.diametro %></td>
+                                        <% } %>
+
+                                        <% if (result.longitud !== null) { %>
+                                        <td><%= result.longitud %>m</td>
+                                        <% } %>
+
+                                        <% if (result.cantidad !== null) { %>
+                                        <td><%= result.cantidad %></td>
+                                        <% } %>
+
+                                        <% if (result.codigo !== null) { %>
+                                        <td><%= result.codigo %></td>
+                                        <% } %>
+
+                                    </tr>
+                                <% }); %>
+                            </tbody>
+                        </table>
+                    </div> 
+                    
+                <% }; %>
+                <% }; %>
+                
+        </div>
+        <!-- ===== TABLE ===== -->
+    </div>
+</main>
+<!-- ====== MAIN ======= -->
+
+<!-- ====== FORMS ====== -->
+<article class="category-sub">
+
+    
+
+</article>
+<!-- ====== FORMS ====== -->
+
+
+<%- include('layout/footer')%>
